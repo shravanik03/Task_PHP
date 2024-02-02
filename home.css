@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+
+body {
     overflow-x: hidden;
 }
 
@@ -10,25 +14,57 @@
     --light-blue: #a7bcff;
     --secondary-color: #e74c3c;
     --accent-color: #2ecc71;
-
 }
 
 #wrapper {
     width: 100vw;
     height: 100vh;
-}
-
-#home-page {
-    width: 100%;
-    height: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 60px;
+}
+
+.user-name {
+    position: absolute;
+    top: 5%;
+    z-index: 13;
+    right: 15%;
+    color: #192346;
+    font-family: 'Dosis', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+#logout-nav {
+    font-family: 'Dosis', sans-serif;
+    border: 1px solid var(--primary-color);
+    color: #fff;
+    font-size: 19px;
+    background-color: var(--primary-color);
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 25px;
+    width: 95px;
+}
+
+#logout-nav:hover{
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+    font-size: 39px;
+    font-weight: 800;
+    color: #e74c3c;
+    margin-top: 45px;
+    margin-bottom: 25px;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .logo span {
@@ -46,7 +82,7 @@
 .navbar {
     background-color: #F8D7D7;
     width: 100%;
-    height: 15%;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,32 +98,6 @@ header {
     margin: 0 auto;
 }
 
-.nav-btn {
-    display: flex;
-    gap: 20px;
-}
-
-.menu {
-    display: none;
-}
-
-.nav-btn button {
-    font-family: 'Dosis', sans-serif;
-    border: 1px solid var(--primary-color);
-    color: #fff;
-    font-size: 19px;
-    background-color: var(--primary-color);
-    font-weight: 500;
-    padding: 10px 15px;
-    border-radius: 25px;
-    width: 95px;
-}
-
-.nav-btn button:hover {
-    cursor: pointer;
-    color: white;
-}
-
 .flower-img {
     width: 700px;
     border: 1px solid white;
@@ -95,7 +105,6 @@ header {
 }
 
 .content-para {
-    width: 650px;
     font-family: 'Dosis', sans-serif;
     font-size: 27px;
     text-align: justify;
@@ -105,30 +114,14 @@ header {
     gap: 40px;
 }
 
-.content-para button {
-    width: 40%;
-    padding: 13px 0px;
-    background-color: #F8D7D7;
-    border: 1px solid #F8D7D7;
-    color: #192346;
-    font-size: 20px;
-    font-family: 'Dosis', sans-serif;
-    font-weight: 700;
-    border-radius: 25px;
-
-}
-
-.content-para button:hover {
-    background-color: #f9968b;
-    cursor: pointer;
-}
-
 .hero-section {
     width: 85%;
     margin: 0 auto;
     display: flex;
-    gap: 37px;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
+    height: max-content;
 }
 
 
