@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#sign-up-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8D7D7;
+}
+
+#sign-up-box {
+    width: 400px;
+    height: 550px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 30px 20px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.form-head-su {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.form-head-su h2 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+#sign-up-submit {
+    width: 100%;
+    padding: 11px 0px;
+    font-size: 19px;
+    background-color: #f87c6e;
+    border: 1px solid #f87c6e;
+    margin-top: 50px;
+    color: white;
+}
+
+.sign-up-name-inp {
+    width: 49%;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.sign-up-input {
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.below-button {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.below-button span {
+    color: #f87c6e;
+    font-weight: 500;
+}
+
+.below-button span:hover {
+    cursor: pointer;
+}
+
+.error-div{
+    color: red;
+}

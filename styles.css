@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root {
+    --primary-color: #192346;
+    --light-blue: #a7bcff;
+    --secondary-color: #e74c3c;
+    --accent-color: #2ecc71;
+
+}
+
+#wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+#home-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    font-family: 'Dosis', sans-serif;
+    font-size: 39px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.logo-img {
+    width: 100px;
+    height: 70px;
+}
+
+.navbar {
+    background-color: #F8D7D7;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #F8D7D7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.nav-btn {
+    display: flex;
+    gap: 20px;
+}
+
+.menu {
+    display: none;
+}
+
+.nav-btn button {
+    font-family: 'Dosis', sans-serif;
+    border: 1px solid var(--primary-color);
+    color: #fff;
+    font-size: 19px;
+    background-color: var(--primary-color);
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 25px;
+    width: 95px;
+}
+
+.nav-btn button:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.flower-img {
+    width: 700px;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+.content-para {
+    width: 650px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 27px;
+    text-align: justify;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.content-para button {
+    width: 40%;
+    padding: 13px 0px;
+    background-color: #F8D7D7;
+    border: 1px solid #F8D7D7;
+    color: #192346;
+    font-size: 20px;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    border-radius: 25px;
+
+}
+
+.content-para button:hover {
+    background-color: #f9968b;
+    cursor: pointer;
+}
+
+.hero-section {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    gap: 37px;
+    align-items: center;
+}
+
+#sign-in-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8D7D7;
+    display: none;
+}
+
+#sign-up-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8D7D7;
+}
+
+#sign-in-box {
+    width: 400px;
+    height: 430px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 35px 20px;
+    border-radius: 16px;
+}
+
+.form-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 55px;
+}
+
+.form-head h2 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.below-button {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.below-button span {
+    color: #f87c6e;
+    font-weight: 500;
+}
+
+.below-button span:hover {
+    cursor: pointer;
+}
+
+#sign-in-form label {
+
+    font-size: 23px;
+    font-weight: 500;
+}
+
+#sign-in-form {
+    margin-top: 30px;
+}
+
+#sign-in-submit {
+    width: 100%;
+    padding: 11px 0px;
+    font-size: 19px;
+    background-color: #f87c6e;
+    border: 1px solid #f87c6e;
+    color: white;
+    margin-top: 14px;
+}
+
+#forgot-password {
+    margin-top: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+#sign-in-form input {
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 17px;
+}
+
+
+
+@media (max-width:600px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo span {
+        font-size: 32px;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .logo-img {
+        width: 70px;
+        height: 50px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu i {
+        font-size: 28px;
+    }
+}
