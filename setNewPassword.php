@@ -36,26 +36,26 @@
             if ($password !== $confirmPassword) {
                 array_push($errors, "Password and confirm password should be same");
             }
-            require_once "database.php";
-            $sql = "SELECT * FROM user_info WHERE email='$email'";
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                array_push($errors, "Email is already used");
-            }
+            
+            
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
                     echo "<p class='error-div'>*$error</p>";
                 }
             } else {
-
-                $sql = "UPDATE user_info SET password = ?";
+                require_once "database.php";
+                if(isset($_GET['email'])){
+                    $email = $_GET['email'];
+                }
+                $sql = "UPDATE user_info SET password = ? WHERE email='$email'";
                 $stmt = mysqli_stmt_init($conn);
                 $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
                 if ($prepareStmt) {
                     mysqli_stmt_bind_param($stmt, "s", $password);
                     mysqli_stmt_execute($stmt);
+                    
+                    header("Location: signin.php");
                     echo "Password reset successfully!!";
-                    exit();
                 } else {
                     die("Something went wrong:(");
                 }
@@ -63,14 +63,13 @@
         }
         ?>
         <div class="container">
-            <h2>Reset Password</h2>
+            <h2>Set New Password</h2>
             <form method="post">
-                <input type="password" name="password" id="email-input" placeholder="Password">
-                <input type="password" name="confirm-password" id="email-input" placeholder="Confirm Password">
-                <input type="submit" value="Send Reset Link" name="submit" id="reset-btn">
+                <input type="password" name="password" id="email-input" placeholder="New Password">
+                <input type="password" style="margin-top:10px;" name="confirm-password" id="email-input" placeholder="Confirm Password" >
+                <input type="submit" value="Set Password" name="submit" id="reset-btn">
             </form>
-            <p class="below-button">Don't have an account? <span onclick="redirectToSignup()" id="create-account">Sign
-                    Up</span></p>
+            
         </div>
     </div>
 </body>

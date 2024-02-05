@@ -32,7 +32,7 @@
 
                 if ($user) {
                     $subject = "Reset Password";
-                    $body = "Hi," . $user['name'] . " Click here to reset your password http://localhost/Task_PHP/setNewPassword.php";
+                    $body = "Hi," . $user['name'] . " Click here to reset your password http://localhost/Task_PHP/setNewPassword.php?email=$email";
                     $name = $user["name"];
                     $response = sendMail($email, $subject, $body, $name);
                     echo $response;
