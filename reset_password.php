@@ -17,15 +17,9 @@
 
 <body>
     <div id="wrapper">
-        
+
         <?php
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\SMTP;
-        use PHPMailer\PHPMailer\Exception;
-
-        //Load Composer's autoloader
-        require 'vendor/autoload.php';
-
+        require('script.php');
         if (isset($_POST["submit"])) {
             $email = $_POST["email"];
             if (empty($email)) {
@@ -35,42 +29,14 @@
                 $sql = "SELECT * from user_info WHERE email='$email'";
                 $result = mysqli_query($conn, $sql);
                 $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                echo $email;
-                echo $user["name"];
+
                 if ($user) {
-                    $mail = new PHPMailer(true);
-                   
-                    try {
-                        //Server settings
-                        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                        $mail->isMail();                                            //Send using SMTP
-                        $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
-                        $mail->Username = 'shravanikul2003@gmail.com';                     //SMTP username
-                        $mail->Password = 'rlmuawahuhiwzxup';                               //SMTP password
-                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-                        $mail->Port = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
-                        //Recipients
-                        $mail->setFrom('shravanikul2003@gmail.com', 'BloomNursery');
-                        $mail->addAddress($email, $user["name"]);     //Add a recipient
-                        //Content
-                        $subject = "Reset Password";
-                        $body = "Hi," . $user['name'] . "Click here to reset your password http://localhost/Task_PHP/setNewPassword.php";
-                        $mail->isHTML(true);                                  //Set email format to HTML
-                        $mail->Subject = $subject;
-                        $mail->Body = $body;
+                    $subject = "Reset Password";
+                    $body = "Hi," . $user['name'] . " Click here to reset your password http://localhost/Task_PHP/setNewPassword.php";
+                    $name = $user["name"];
+                    $response = sendMail($email, $subject, $body, $name);
+                    echo $response;
 
-                        if ($mail->send()) {
-                            echo "Mail has been sent check your email";
-                        } else {
-                            echo "Mail sending failed";
-                        }
-
-                    } catch (Exception $e) {
-                        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                    }
-                    
                 } else {
                     echo "<div><p class='error-div'>*Entered email ID does not exist.</p></div>";
                 }
