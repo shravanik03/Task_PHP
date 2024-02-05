@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8D7D7;
+}
+
+h2 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 55px;
+}
+
+.container {
+    width: 300px;
+    height: 320px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+}
+
+#email-input {
+    width: 100%;
+    height: 35px;
+    padding: 10px;
+    border: 1px solid black;
+    font-size: 17px;
+}
+
+#reset-btn {
+    width: 100%;
+    padding: 11px 0px;
+    font-size: 19px;
+    background-color: #f87c6e;
+    border: 1px solid #f87c6e;
+    color: white;
+    margin-top: 14px;
+}
+
+.below-button {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.below-button span {
+    color: #f87c6e;
+    font-weight: 500;
+}
+
+.below-button span:hover {
+    cursor: pointer;
+}

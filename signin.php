@@ -52,7 +52,7 @@
                     }
                 }
                 ?>
-                <a id="forgot-password">Forgot password?</a>
+                <a href="reset_password.php" id="forgot-password">Forgot password?</a>
                 <input type="submit" id="sign-in-submit" name="submit" value="Sign In" />
                 <p class="below-button">Don't have an account? <span onclick="redirectToSignup()"
                         id="create-account">Create One</span></p>
@@ -62,6 +62,10 @@
     <script>
         function redirectToSignup() {
             window.location.href = "signup.php";
+        }
+
+        function resetPassword(){
+            window.location.href = "reset_password.php";
         }
 
     </script>
