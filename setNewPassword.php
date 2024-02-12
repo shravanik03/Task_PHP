@@ -48,13 +48,13 @@
                 $stmt = mysqli_stmt_init($conn);
                 $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
                 if ($prepareStmt) {
-                    mysqli_stmt_bind_param($stmt, "s", $password);
+                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    mysqli_stmt_bind_param($stmt, "s", $hashedPassword);
                     mysqli_stmt_execute($stmt);
-                    
                     header("Location: signin.php");
                     echo "Password reset successfully!!";
                 } else {
-                    die("Something went wrong:(");
+                    die("Something went wrong:("); 
                 }
             }
         }
