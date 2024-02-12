@@ -25,11 +25,11 @@
                 <input type="email" name="email" placeholder="Email ID"><br><br>
                 <input type="password" name="password" placeholder="Password"><br><br><br>
                 <?php
-
+                require_once("functions.php");
                 if (isset($_POST["submit"])) {
 
-                    $email = $_POST["email"];
-                    $password = $_POST["password"];
+                    $email = sanitizeInput($_POST["email"]);
+                    $password = sanitizeInput($_POST["password"]);
 
                     if (empty($email) || empty($password)) {
                         echo "<p class='error-div'>*All the fields are required.</p>";

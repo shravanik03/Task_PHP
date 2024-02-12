@@ -29,12 +29,13 @@
                 <input type="password" name="password" class="sign-up-input" placeholder="Password"><br>
                 <input type="password" name="confirm-password" class="sign-up-input" placeholder="Confirm Password">
                 <?php
+                require_once("functions.php");
                 if (isset($_POST["submit"])) {
-                    $firstname = $_POST['firstname'];
-                    $lastname = $_POST['lastname'];
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
-                    $confirmPassword = $_POST['confirm-password'];
+                    $firstname = sanitizeInput($_POST['firstname']);
+                    $lastname = sanitizeInput($_POST['lastname']);
+                    $email = sanitizeInput($_POST['email']);
+                    $password = sanitizeInput($_POST['password']);
+                    $confirmPassword = sanitizeInput($_POST['confirm-password']);
                     $name = $firstname . ' ' . $lastname;
                     $errors = array();
                     if (empty($email) || empty($password) || empty($confirmPassword) || empty($firstname) || empty($lastname)) {
