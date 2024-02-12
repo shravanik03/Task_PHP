@@ -21,7 +21,7 @@
         <?php
         
         if (isset($_POST["submit"])) {
-            
+            require_once ("functions.php");
             $password = $_POST['password'];
             $confirmPassword = $_POST['confirm-password'];
             
@@ -29,14 +29,11 @@
             if (empty($password) || empty($confirmPassword)) {
                 array_push($errors, "All fields are required");
             }
-           
-            if (strlen($password) < 8) {
-                array_push($errors, "Password length must be minimum 8");
-            }
             if ($password !== $confirmPassword) {
                 array_push($errors, "Password and confirm password should be same");
             }
             
+            $errors = array_merge($errors,checkPasswordStrength($password));
             
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
@@ -44,10 +41,10 @@
                 }
             } else {
                 require_once "database.php";
-                if(isset($_GET['email'])){
-                    $email = $_GET['email'];
+                if(isset($_GET['token'])){
+                    $email = $_GET['token'];
                 }
-                $sql = "UPDATE user_info SET password = ? WHERE email='$email'";
+                $sql = "UPDATE user_info SET password = ? WHERE token='$token'";
                 $stmt = mysqli_stmt_init($conn);
                 $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
                 if ($prepareStmt) {

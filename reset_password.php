@@ -29,10 +29,11 @@
                 $sql = "SELECT * from user_info WHERE email='$email'";
                 $result = mysqli_query($conn, $sql);
                 $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $token = $user["token"];
 
                 if ($user) {
                     $subject = "Reset Password";
-                    $body = "Hi," . $user['name'] . " Click here to reset your password http://localhost/Task_PHP/setNewPassword.php?email=$email";
+                    $body = "Hi," . $user['name'] . " Click here to reset your password http://localhost/Task_PHP/setNewPassword.php?token=$token";
                     $name = $user["name"];
                     $response = sendMail($email, $subject, $body, $name);
                     echo $response;

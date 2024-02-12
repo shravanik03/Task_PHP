@@ -17,7 +17,46 @@
 
 <body>
     <div id="sign-up-wrapper">
+        <?php
+        require_once("functions.php");
+        if (isset($_POST["submit"])) {
+            $firstname = sanitizeInput($_POST['firstname']);
+            $lastname = sanitizeInput($_POST['lastname']);
+            $email = sanitizeInput($_POST['email']);
+            $password = sanitizeInput($_POST['password']);
+            $confirmPassword = sanitizeInput($_POST['confirm-password']);
+            $name = $firstname . ' ' . $lastname;
+            $sanitizedInputs = array(
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'email' => $email,
+                'password' => $password,
+                'confirm-password' => $confirmPassword
+            );
+            $errors = checkForErrorsSignUp($sanitizedInputs);
 
+            if (count($errors) > 0) {
+                foreach ($errors as $error) {
+                    echo "<p class='error-div'>*$error</p>";
+                }
+            } else {
+                require_once "database.php";
+                $token = uniqid();
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO user_info (name,email,password,token) values(?,?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
+                $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
+                if ($prepareStmt) {
+                    mysqli_stmt_bind_param($stmt, "sss", $name, $email, $hashedPassword, $token);
+                    mysqli_stmt_execute($stmt);
+                    header("Location: home.php");
+                    exit();
+                } else {
+                    die("Something went wrong:(");
+                }
+            }
+        }
+        ?>
         <div id="sign-up-box">
             <div class="form-head-su">
                 <h2>Sign Up Form</h2>
@@ -28,45 +67,6 @@
                 <input type="email" name="email" class="sign-up-input" placeholder="Email"><br>
                 <input type="password" name="password" class="sign-up-input" placeholder="Password"><br>
                 <input type="password" name="confirm-password" class="sign-up-input" placeholder="Confirm Password">
-                <?php
-                require_once("functions.php");
-                if (isset($_POST["submit"])) {
-                    $firstname = sanitizeInput($_POST['firstname']);
-                    $lastname = sanitizeInput($_POST['lastname']);
-                    $email = sanitizeInput($_POST['email']);
-                    $password = sanitizeInput($_POST['password']);
-                    $confirmPassword = sanitizeInput($_POST['confirm-password']);
-                    $name = $firstname . ' ' . $lastname;
-                    $sanitizedInputs = array(
-                        'firstname' => $firstname,
-                        'lastname' => $lastname,
-                        'email' => $email,
-                        'password' => $password,
-                        'confirm-password' => $confirmPassword
-                    );
-                    $errors = checkForErrorsSignUp($sanitizedInputs);
-                    
-                    if (count($errors) > 0) {
-                        foreach ($errors as $error) {
-                            echo "<p class='error-div'>*$error</p>";
-                        }
-                    } else {
-                        require_once "database.php";
-                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                        $sql = "INSERT INTO user_info (name,email,password) values(?,?,?)";
-                        $stmt = mysqli_stmt_init($conn);
-                        $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
-                        if ($prepareStmt) {
-                            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $hashedPassword);
-                            mysqli_stmt_execute($stmt);
-                            header("Location: home.php");
-                            exit();
-                        } else{
-                            die("Something went wrong:(");
-                        }
-                    }
-                }
-                ?>
                 <input type="submit" id="sign-up-submit" value="Sign Up" name="submit" />
                 <p class="below-button">Already have an account? <span onclick="redirectToSignin()" id="already-account">Sign In</span></p>
             </form>
