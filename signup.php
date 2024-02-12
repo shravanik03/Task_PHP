@@ -37,31 +37,21 @@
                     $password = sanitizeInput($_POST['password']);
                     $confirmPassword = sanitizeInput($_POST['confirm-password']);
                     $name = $firstname . ' ' . $lastname;
-                    $errors = array();
-                    if (empty($email) || empty($password) || empty($confirmPassword) || empty($firstname) || empty($lastname)) {
-                        array_push($errors, "All fields are required");
-                    }
-                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                        array_push($errors, "Email is not valid");
-                    }
-                    if (strlen($password) < 8) {
-                        array_push($errors, "Password length must be minimum 8");
-                    }
-                    if ($password !== $confirmPassword) {
-                        array_push($errors, "Password and confirm password should be same");
-                    }
-                    require_once "database.php";
-                    $sql = "SELECT * FROM user_info WHERE email='$email'";
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        array_push($errors,"Email is already used");
-                    }
+                    $sanitizedInputs = array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'email' => $email,
+                        'password' => $password,
+                        'confirm-password' => $confirmPassword
+                    );
+                    $errors = checkForErrorsSignUp($sanitizedInputs);
+                    
                     if (count($errors) > 0) {
                         foreach ($errors as $error) {
                             echo "<p class='error-div'>*$error</p>";
                         }
                     } else {
-                        
+                        require_once "database.php";
                         $sql = "INSERT INTO user_info (name,email,password) values(?,?,?)";
                         $stmt = mysqli_stmt_init($conn);
                         $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
