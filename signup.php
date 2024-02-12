@@ -72,11 +72,7 @@
             </form>
         </div>
     </div>
-    <script>
-        function redirectToSignin(){
-            window.location.href = "signin.php";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

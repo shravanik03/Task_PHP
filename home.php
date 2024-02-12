@@ -63,11 +63,7 @@
             
         </div>
     </div>
-    <script>
-        function logOut(){
-            window.location.href = "index.php";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

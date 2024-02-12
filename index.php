@@ -52,14 +52,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/4f52b70ee0.js" crossorigin="anonymous"></script>
-    <script>
-        function redirectToSignup() {
-            window.location.href = "signup.php";
-        }
-        function redirectToSignin(){
-            window.location.href = "signin.php";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

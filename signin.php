@@ -59,16 +59,7 @@
             </form>
         </div>
     </div>
-    <script>
-        function redirectToSignup() {
-            window.location.href = "signup.php";
-        }
-
-        function resetPassword(){
-            window.location.href = "reset_password.php";
-        }
-
-    </script>
+   <script src="script.js"></script>
 </body>
 
 </html>
