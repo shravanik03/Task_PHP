@@ -52,11 +52,12 @@
                         }
                     } else {
                         require_once "database.php";
+                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                         $sql = "INSERT INTO user_info (name,email,password) values(?,?,?)";
                         $stmt = mysqli_stmt_init($conn);
                         $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
                         if ($prepareStmt) {
-                            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $password);
+                            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $hashedPassword);
                             mysqli_stmt_execute($stmt);
                             header("Location: home.php");
                             exit();
